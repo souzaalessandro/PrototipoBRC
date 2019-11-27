@@ -60,6 +60,9 @@ body {
     background-color: antiquewhite;
 }
 
+
+/*================== Fornecedor autocomplete ==========*/
+
 .ui-autocomplete {
     position: absolute;
     top: 100%;
@@ -110,6 +113,14 @@ body {
     padding: 0;
     position: absolute;
     width: 1px;
+}
+
+
+/*===============grid =============*/
+
+.pagination {
+    float: right;
+    padding-right: 15px;
 }
 
 
