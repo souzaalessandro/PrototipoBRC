@@ -1,9 +1,58 @@
+/*
+*@autor alessandro.souza - 4FDeveloper
+*@version 0.1
+*
+*/
+
+
+/*================================ Lyout ================================*/
+
 html,
 body {
     height: 100%;
     width: 100%;
-    position: absolute;
-    background-color: white;
+}
+
+body {
+    background: url('../../../Content/dist/background-3.jpg');
+    background-attachment: fixed;
+}
+
+.caption {
+    padding-top: 2px;
+}
+
+.caption>h5 {
+    padding: 10px 0;
+    float: left;
+    display: inline-block;
+    line-height: 18px;
+    font-size: 18px;
+}
+
+.caption>.tools {
+    padding: 12px 0 8px;
+    display: inline-block;
+    float: right;
+}
+
+.caption-text {
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.fa-chevron-down:before {
+    content: "\f078";
+    position: relative;
+    color: rgb(150, 142, 170);
+}
+
+.card-header .fa {
+    transition: .3s transform ease-in-out;
+}
+
+.card-header .collapsed .fa {
+    transform: rotate(90deg);
 }
 
 .button {
@@ -63,19 +112,5 @@ body {
     width: 1px;
 }
 
-.fa-chevron-down:before {
-    content: "\f078";
-    position: relative;
-    
-    margin: 977px;
-    color: black;
-}
 
-
-.card-header .fa {
-   
-    transition: .3s transform ease-in-out;
-  }
-  .card-header .collapsed .fa {
-    transform: rotate(90deg);
-  }
+/*=========================================================================*/

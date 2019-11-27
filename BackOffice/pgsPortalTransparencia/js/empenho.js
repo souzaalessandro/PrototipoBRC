@@ -13,6 +13,11 @@ $(document).ready(function() {
         autoclose: true,
         todayHighlight: true
     });
+    $('#collapse-collapsed').collapse({
+        toggle: false
+    })
+
+
 });
 
 var availableTags = [
