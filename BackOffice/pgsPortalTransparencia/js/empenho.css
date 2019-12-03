@@ -46,6 +46,7 @@ hr {
 .caption>.tools {
     padding: 12px 0 8px;
     display: inline-block;
+    float: right;
 }
 
 .caption-text {
