@@ -22,12 +22,25 @@ body {
     padding-top: 2px;
 }
 
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgb(150, 142, 170);
+    background: aqua;
+}
+
 .caption>h5 {
     padding: 10px 0;
-    float: left;
     display: inline-block;
-    line-height: 18px;
+    line-height: 20px;
     font-size: 18px;
+    text-align: center;
+}
+
+.marcador {
+    border: 2px solid red;
+    background-color: antiquewhite;
 }
 
 .caption>.tools {
@@ -45,6 +58,11 @@ body {
     content: "\f078";
     position: relative;
     color: rgb(150, 142, 170);
+}
+
+.card-header {
+    background-color: white;
+    border-bottom: white;
 }
 
 .card-header .fa {
