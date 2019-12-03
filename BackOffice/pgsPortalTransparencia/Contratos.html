@@ -28,7 +28,7 @@
                 <div class="card mt-5">
                     <div class="card-header">
                         <div class="caption text-center">
-                            <h5>Consultar empenhos</h5>
+                            <h5>Consultar de Contrato</h5>
                             <div class="tools">
                                 <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed"
                                     aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-lg-3">
-                                        <label for="dtFinalEmpenho">Data final</label>
+                                        <label for="dtFinalEmpenho">Data vigência final</label>
                                         <div class="input-group">
                                             <div class="input-group date" id="dtFinal" data-provide="datepicker">
                                                 <input type="text" id="dtFinalEmpenho" class="form-control" required>
@@ -83,12 +83,12 @@
                                     </div>
                                     <!-- Numero empenho -->
                                     <div class="col-md-2 col-lg-2 pb-2">
-                                        <label for="numeroIni">Número de</label>
-                                        <input type="text" class="form-control" id="numeroIni">
+                                        <label for="numeroIni">Número inicial</label>
+                                        <input type="number" class="form-control" id="numeroIni">
                                     </div>
                                     <div class="col-md-2 col-lg-2 pb-2">
-                                        <label for="numeroFim">Até</label>
-                                        <input type="text" class="form-control" id="numeroFim">
+                                        <label for="numeroFim">Número final</label>
+                                        <input type="number" class="form-control" id="numeroFim">
                                     </div>
                                     <!--Fim numero empenho-->
 
@@ -96,66 +96,50 @@
                                 <div class="row">
                                     <div class="col-md-8 col-lg-8">
 
-                                        <!-- Tipo de empenho-->
-                                        <div class="form-group">
-
-                                            <label for="tipoEmpenho">Tipos</label>
-                                            <div class="form-control form-control" id="tipoEmpenho">
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="inlineRadioOptions" id="inlineRadio1" value="E"
-                                                            checked> Estimativa
-                                                    </label>
+                                        <div class="row">
+                                            <!--Começo do tipo Situação-->
+                                            <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
+                                                <label for="fornecedor">Situação</label>
+                                                <div class="input-group">
+                                                    <input type="text" id="Situação" class="form-control" placeholder=""
+                                                        aria-label="" aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" id="btnSearch"
+                                                            type="submit"><i class="fa fa-search"></i></button>
+                                                    </div>
                                                 </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="inlineRadioOptions" id="inlineRadio2" value="G">
-                                                        Global
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="inlineRadioOptions" id="inlineRadio3" value="O">
-                                                        Ordinário
-                                                    </label>
-                                                </div>
-
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!--Fim tipo do contratos-->
+                                        <!--Fim tipo do Situação-->
 
-                                <!--Comeco do Input Group-->
-                                <label for="fornecedor">Objeto</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    </div>
-
-                                    <textarea class="form-control" aria-label="With textarea"></textarea>
-                                </div>
-                                <!--Fim do Input Group-->
-
-                                <div class="row">
-                                    <!-- <div class="fornecedor">-->
-                                    <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
-                                        <label for="fornecedor">Fornecedor</label>
+                                        <!--Comeco do Input Group-->
+                                        <label for="fornecedor">Objeto</label>
                                         <div class="input-group">
-                                            <input type="text" id="fornecedor" class="form-control"
-                                                placeholder="Informe o fornecedor" aria-label="Informe o fornecedor"
-                                                aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" id="btnSearch"
-                                                    type="submit"><i class="fa fa-search"></i></button>
+                                            <div class="input-group-prepend">
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    <!-- </div> -->
-                                </div>
+                                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                                        </div>
+                                        <!--Fim do Input Group-->
+
+                                        <div class="row">
+                                            <!-- <div class="fornecedor">-->
+                                            <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
+                                                <label for="fornecedor">Fornecedor</label>
+                                                <div class="input-group">
+                                                    <input type="text" id="fornecedor" class="form-control"
+                                                        placeholder="Informe o fornecedor"
+                                                        aria-label="Informe o fornecedor"
+                                                        aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" id="btnSearch"
+                                                            type="submit"><i class="fa fa-search"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- </div> -->
+                                        </div>
                             </form>
                         </div>
                     </div>
