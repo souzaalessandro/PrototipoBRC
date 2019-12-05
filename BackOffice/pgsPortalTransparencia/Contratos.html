@@ -28,9 +28,10 @@
                 <div class="card mt-5">
                     <div class="card-header">
                         <div class="caption text-center">
-                            <h5>Consultar empenhos</h5>
+                            <h5>Consultar de Contratos</h5>
                             <div class="tools">
-                                <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed" aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
+                                <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed"
+                                    aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
                                     <i class="fa fa-chevron-down"></i>
                                 </a>
                             </div>
@@ -47,10 +48,11 @@
                                 <div class="row">
                                     <div class="col-md-3 col-lg-3 ">
                                         <div class="form-group">
-                                            <label for="dtInicialEmpenho">Data vigência inicial</label>
+                                            <label for="dtInicialVigencia">Data vigência inicial</label>
                                             <div class="input-group">
                                                 <div class="input-group date" id="dtInicial" data-provide="datepicker">
-                                                    <input type="text" id="dtInicialEmpenho" class="form-control" required>
+                                                    <input type="text" id="dtInicialVigencia" class="form-control"
+                                                        required>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
                                                             <span class="fa fa-calendar"></span>
@@ -64,10 +66,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-lg-3">
-                                        <label for="dtFinalEmpenho">Data final</label>
+                                        <label for="dtFinalVigencia">Data vigência final</label>
                                         <div class="input-group">
                                             <div class="input-group date" id="dtFinal" data-provide="datepicker">
-                                                <input type="text" id="dtFinalEmpenho" class="form-control" required>
+                                                <input type="text" id="dtFinalVigencia" class="form-control" required>
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">
                                                         <span class="fa fa-calendar"></span>
@@ -81,12 +83,12 @@
                                     </div>
                                     <!-- Numero empenho -->
                                     <div class="col-md-2 col-lg-2 pb-2">
-                                        <label for="numeroIni">Número de</label>
-                                        <input type="text" class="form-control" id="numeroIni">
+                                        <label for="numeroIni">Número inicial</label>
+                                        <input type="number" class="form-control" id="numeroIni">
                                     </div>
                                     <div class="col-md-2 col-lg-2 pb-2">
-                                        <label for="numeroFim">Até</label>
-                                        <input type="text" class="form-control" id="numeroFim">
+                                        <label for="numeroFim">Número final</label>
+                                        <input type="number" class="form-control" id="numeroFim">
                                     </div>
                                     <!--Fim numero empenho-->
 
@@ -94,70 +96,50 @@
                                 <div class="row">
                                     <div class="col-md-8 col-lg-8">
 
-                                        <!-- Tipo de empenho-->
-                                        <div class="form-group">
-
-                                            <label for="tipoEmpenho">Tipos</label>
-                                            <div class="form-control form-control" id="tipoEmpenho">
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="inlineRadioOptions" id="inlineRadio1" value="E"
-                                                            checked> Estimativa
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="inlineRadioOptions" id="inlineRadio2" value="G">
-                                                        Global
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="inlineRadioOptions" id="inlineRadio3" value="O">
-                                                        Ordinário
-                                                    </label>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Fim tipo do contratos-->
-                                <div class="row">
-                                    <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
-                                        <div class="form-group">
-                                            <!--Comeco do Input Group-->
-                                            <label for="fornecedor">Objeto</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                </div>
-
-                                                <textarea class="form-control" aria-label="With textarea"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Fim do Input Group-->
-
-                                <div class="row">
-                                    <!-- <div class="fornecedor">-->
-                                    <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
-                                        <div class="form-group">
-                                            <label for="fornecedor">Fornecedor</label>
-                                            <div class="input-group">
-                                                <input type="text" id="fornecedor" class="form-control" placeholder="Informe o fornecedor" aria-label="Informe o fornecedor" aria-describedby="basic-addon2">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-outline-secondary" id="btnSearch" type="submit"><i class="fa fa-search"></i></button>
+                                        <div class="row">
+                                            <!--Começo do tipo Situação-->
+                                            <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
+                                                <label for="fornecedor">Situação</label>
+                                                <div class="input-group">
+                                                    <input type="text" id="Situação" class="form-control" placeholder=""
+                                                        aria-label="" aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" id="btnSearch"
+                                                            type="submit"><i class="fa fa-search"></i></button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <!--Fim tipo do Situação-->
 
-                                    <!-- </div> -->
-                                </div>
+                                        <!--Comeco do Input Group-->
+                                        <label for="fornecedor">Objeto</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                            </div>
+
+                                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                                        </div>
+                                        <!--Fim do Input Group-->
+
+                                        <div class="row">
+                                            <!-- <div class="fornecedor">-->
+                                            <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
+                                                <label for="fornecedor">Fornecedor</label>
+                                                <div class="input-group">
+                                                    <input type="text" id="fornecedor" class="form-control"
+                                                        placeholder="Informe o fornecedor"
+                                                        aria-label="Informe o fornecedor"
+                                                        aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" id="btnSearch"
+                                                            type="submit"><i class="fa fa-search"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- </div> -->
+                                        </div>
                             </form>
                         </div>
                     </div>
