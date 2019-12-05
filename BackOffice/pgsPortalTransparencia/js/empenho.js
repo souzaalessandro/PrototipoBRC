@@ -102,17 +102,42 @@ window.addEventListener('load', function() {
 
 function ValidateRangeDate(StartDate, EndDate) {
 
-    let message = "";
+    if (typeof StartDate === 'undefined')
+        return;
 
-    if (StartDate == "")
-        message = 'A data '
+    if (StartDate === null)
+        return;
 
-    const startDate = new Date(elStartDate.value);
-    const endDate = new Date(elEndDate.value);
-    if (startDate < endDate) {
+    if (StartDate > EndDate) {
 
+        const obj = {
+            class: 'danger',
+            message: 'A data inicial do filtro não pode ser maior que a data final'
+        };
+        showAlert(obj);
 
     }
+
+}
+
+function ValidateRangeEmpenhos(numeroInicial, numeroFinal) {
+
+    if (typeof numeroInicial === 'undefined')
+        return;
+
+    if (numeroInicial === null)
+        return;
+
+    if (numeroInicial > numeroFinal) {
+
+        const obj = {
+            class: 'danger',
+            message: 'O numero inicial do empenho não pode ser maior que o numero final do empenho'
+        };
+        showAlert(obj);
+
+    }
+
 
 }
 
@@ -129,19 +154,64 @@ function showAlert(obj) {
 
 function SearchRegister() {
 
-    const elStartDate = document.getElementById('dtInicial');
-    const elEndDate = document.getElementById('dtFinal');
+    ObtemDadosFiltrados("");
+    const elStartDate = $("#dtInicial").datepicker("getDate");
+    const elEndDate = $("#dtFinal").datepicker("getDate");
 
-    var messageWarning = ValidateRangeDate(elStartDate, elEndDate);
-    const obj = {
-        class: 'danger',
-        message: 'Faltou algo ' + contador
-    };
-    showAlert(obj);
+    ValidateRangeDate(elStartDate, elEndDate);
 
+    const numeroEmpenhoInicial = document.getElementById('numeroIni').value;
+    const numeroEmpenhoFinal = document.getElementById('numeroFim').value;
 
+    ValidateRangeEmpenhos(numeroEmpenhoInicial, numeroEmpenhoFinal);
+
+    $('#collapse-collapsed').collapse({
+        toggle: true
+    });
 
 }
+
+
+function ObtemDadosFiltrados(dataFilter) {
+
+
+    var htmlTable = '<table id="dataFilter" class="table table-striped table-bordered" style="width:100%"> </table>';
+    $('#dataTable').append(htmlTable);
+    let tableArray = [
+        [1, "05/12/2019", "Global", "Maroquinho", "Orçamento Público", "caneta esferográfica", "258,98", "263,98", "235,58", "569,98"],
+        [2, "05/12/2019", "Global", "Maroquinho", "Orçamento Público", "caneta esferográfica", "258,98", "263,98", "235,58", "569,98"],
+        [3, "05/12/2019", "Global", "Maroquinho", "Orçamento Público", "caneta esferográfica", "258,98", "263,98", "235,58", "569,98"],
+        [4, "05/12/2019", "Global", "Maroquinho", "Orçamento Público", "caneta esferográfica", "258,98", "263,98", "235,58", "569,98"],
+        [5, "05/12/2019", "Global", "Maroquinho", "Orçamento Público", "caneta esferográfica", "258,98", "263,98", "235,58", "569,98"],
+    ];
+
+    $('#dataFilter').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ],
+        data: tableArray,
+        "columns": [
+            { "title": "Número do empenho" },
+            { "title": "Data Vencimento" },
+            { "title": "Tipo" },
+            { "title": "Fornecedor" },
+            { "title": "Despesa orç." },
+            { "title": "Objeto" },
+            { "title": "Valor empenhado" },
+            { "title": "Valor liquidado" },
+            { "title": "Valor pago" },
+            { "title": "Valor anulado" }
+        ]
+
+    });
+
+}
+
+
 
 $("#fornecedor")
     // don't navigate away from the field on tab when selecting an item
@@ -175,5 +245,7 @@ $("#fornecedor")
             return false;
         }
     });
+
+
 
 bntSearch.addEventListener('click', SearchRegister);

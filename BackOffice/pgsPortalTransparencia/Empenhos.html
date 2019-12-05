@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../../Content/Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../Content/Bootstrap/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="../../Content/Bootstrap/css/jquery-ui.css">
+    <link rel="stylesheet" href="../../Content/DataTables/DataTables-1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../pgsPortalTransparencia/js/empenho.css">
 
     <title></title>
@@ -30,8 +31,7 @@
                         <div class="caption text-center">
                             <h5>Consultar empenhos</h5>
                             <div class="tools">
-                                <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed"
-                                    aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
+                                <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed" aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
                                     <i class="fa fa-chevron-down"></i>
                                 </a>
                             </div>
@@ -51,8 +51,7 @@
                                             <label for="dtInicialEmpenho">Data inicial</label>
                                             <div class="input-group">
                                                 <div class="input-group date" id="dtInicial" data-provide="datepicker">
-                                                    <input type="text" id="dtInicialEmpenho" class="form-control"
-                                                        required>
+                                                    <input type="text" id="dtInicialEmpenho" class="form-control" required>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
                                                             <span class="fa fa-calendar"></span>
@@ -133,12 +132,9 @@
                                     <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
                                         <label for="fornecedor">Fornecedor</label>
                                         <div class="input-group">
-                                            <input type="text" id="fornecedor" class="form-control"
-                                                placeholder="Informe o fornecedor" aria-label="Informe o fornecedor"
-                                                aria-describedby="basic-addon2">
+                                            <input type="text" id="fornecedor" class="form-control" placeholder="Informe o fornecedor" aria-label="Informe o fornecedor" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" id="btnSearch"
-                                                    type="submit"><i class="fa fa-search"></i></button>
+                                                <button class="btn btn-outline-secondary" id="btnSearch" type="submit"><i class="fa fa-search"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -169,8 +165,8 @@
 
                             </nav>
                             <div class="card-body">
-                                <h3 class="card-title">Title</h3>
-                                <p class="card-text">Text</p>
+                                <div id="dataTable"></div>
+
                             </div>
                             <nav>
                                 <ul class="pagination">
@@ -215,6 +211,7 @@
     <script src="../../Content/Bootstrap/js/bootstrap.min.js"></script>
     <script src="../../Content/Bootstrap/js/bootstrap-datepicker.js"></script>
     <script src="../../Content/Bootstrap/js/bootstrap-datepicker.pt-BR.min.js"></script>
+    <script src="../../Content/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="../pgsPortalTransparencia/js/empenho.js"></script>
 
 </body>
