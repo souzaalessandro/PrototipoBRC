@@ -154,7 +154,6 @@ function ObtemTipoEmpenho() {
 
 function SearchRegister() {
     $('#msgValidate').alert('close');
-    ObtemDadosFiltrados("");
     const elStartDate = $("#dtInicial").datepicker("getDate");
     const elEndDate = $("#dtFinal").datepicker("getDate");
 
@@ -168,6 +167,20 @@ function SearchRegister() {
     $('#collapse-collapsed').collapse({
         toggle: true
     });
+
+    const fornecedorFiltro = document.getElementById('fornecedor').value;
+    var dados = {
+        dataInicial: elStartDate,
+        dataFinal: elEndDate,
+        numeroEmpenhoInicial: numeroEmpenhoInicial,
+        numeroEmpenhoFinal: numeroEmpenhoFinal,
+        tipoEmpenho: ObtemTipoEmpenho(),
+        fornecedor: fornecedorFiltro
+
+    };
+    console.log(dados);
+    
+    ObtemDadosFiltrados(dados);
 
 }
 
@@ -267,6 +280,3 @@ $("#fornecedor")
         }
     });
 
-
-
-bntSearch.addEventListener('click', SearchRegister);
