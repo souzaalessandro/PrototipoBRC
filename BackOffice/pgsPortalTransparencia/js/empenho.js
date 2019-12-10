@@ -1,5 +1,5 @@
 var contador = 0;
-const bntSearch = document.getElementById('btnSearch');
+const bntSearch = document.getElementById('btnbuscar');
 var fornecedores = [];
 
 $(document).ready(function () {
@@ -20,7 +20,7 @@ $(document).ready(function () {
     $('#collapse-collapsed').collapse({
         toggle: false
     });
-    GetFornecedores();
+    //GetFornecedores();
     SetDateInForm();
 });
 
@@ -28,7 +28,7 @@ function SetDateInForm() {
     const dateNow = new Date();
     const dateEnd = new Date();
     dateEnd.setDate(dateNow.getDate() + 90);
-    $("#dtInicial").datepicker("setDate",dateNow);
+    $("#dtInicial").datepicker("setDate", dateNow);
     $("#dtFinal").datepicker("setDate", dateEnd);
 
 }
@@ -136,7 +136,7 @@ function showAlert(obj) {
 function ObtemTipoEmpenho() {
 
     const ordinario = document.getElementById("ordinario").checked;
-    const estimativa = document.getElementById("estimativa").checked; 
+    const estimativa = document.getElementById("estimativa").checked;
     const global = document.getElementById("global").checked;
     let tipoEmpenho = 0; //todos
 
@@ -179,7 +179,7 @@ function SearchRegister() {
 
     };
     console.log(dados);
-    
+
     ObtemDadosFiltrados(dados);
 
 }
@@ -187,11 +187,29 @@ function SearchRegister() {
 
 function ObtemDadosFiltrados(dataFilter) {
 
+    const card = document.getElementById("cardTable");
+    while (card.firstChild) {
+        card.removeChild(card.firstChild);
+    }
+    var htmlTable = '<div class="card"><div class="card-body"> <table id="dataFilter" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">' +
+        '<thead>                       ' +
+        '    <tr>                      ' +
+        '        <th>Nr.Empenho</th>         ' +
+        '        <th>Emissão</th>     ' +
+        '        <th>Tipo</th>       ' +
+        '        <th>Fornecedor</th>       ' +
+        '        <th>Despesa orç.</th>   ' +
+        '        <th>Objeto</th>       ' +
+        '        <th>Empenhado</th>       ' +
+        '        <th>Liquidado</th>       ' +
+        '        <th>Pago</th>       ' +
+        '        <th>Anulado</th>       ' +
+        '    </tr>                     ' +
+        '</thead>                      ' +
+        '</table> </div></div>               ';
+    $('#cardTable').append(htmlTable);
 
 
-
-    var htmlTable = '<table id="dataFilter" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%"> </table>';
-    $('#dataTable').append(htmlTable);
     let tableArray = [
         [1, "05/12/2019", "Global", "Maroquinho", "Orçamento Público", "caneta esferográfica", "258,98", "263,98", "235,58", "569,98"],
         [2, "05/12/2019", "Global", "Maroquinho", "Orçamento Público", "caneta esferográfica", "258,98", "263,98", "235,58", "569,98"],
@@ -203,30 +221,34 @@ function ObtemDadosFiltrados(dataFilter) {
 
     $('#dataFilter').DataTable({
         responsive: true,
- dom: 'Bfrtip',
+        dom: 'Bfrtip',
+
+
+
         buttons: [
-                    {
-                        extend: 'excelHtml5',
-                        text: '<i class="fas fa-file-excel"></i>',
-                        titleAttr: 'Excel'
-                    },
+            {
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel"></i>',
+                titleAttr: 'Excel'
+            },
 
-                    {
-                        extend: 'csvHtml5',
-                        text:'<i class="fas fa-file-csv"></i>',
-                        titleAttr: 'CSV'
-                    },
+            {
+                extend: 'csvHtml5',
+                text: '<i class="fas fa-file-csv"></i>',
+                titleAttr: 'CSV'
+            },
 
-                    {
-                        text: '<i class="fas fa-file-pdf"></i>',
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'LEGAL',
-                        titleAttr: 'PDF',
-                        messageTop:'Portal de Transparência - Consulta de empenhos'
-                       
-                    }
-                 ],
+            {
+                text: '<i class="fas fa-file-pdf"></i>',
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+                titleAttr: 'PDF',
+                messageTop: 'Portal de Transparência - Consulta de empenhos'
+
+            }
+
+        ],
         data: tableArray,
         "columns": [
             { "title": "Número do empenho" },
@@ -279,4 +301,6 @@ $("#fornecedor")
             return false;
         }
     });
+
+bntSearch.addEventListener('click', SearchRegister);
 

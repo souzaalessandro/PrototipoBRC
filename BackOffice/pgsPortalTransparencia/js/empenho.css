@@ -18,6 +18,10 @@ body {
     background-attachment: fixed;
 }
 
+.cardsize{
+    padding-bottom: 8px;
+}
+
 .caption {
     padding-top: 2px;
 }
@@ -140,6 +144,25 @@ hr {
     width: 1px;
 }
 
+.btn-primary{
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-primary1{
+    margin-right: 5px;
+    vertical-align: baseline;
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+
+
+
+
+
 div.container { max-width: 1200px }
 
 /*===============grid =============*/
@@ -149,5 +172,13 @@ div.container { max-width: 1200px }
     padding-right: 15px;
 }
 
+div.dt-buttons {
+    
+    float: right;
+    
+}
 
+.form-control-sm input {
+    margin-right: 8px;
+}
 /*=========================================================================*/
