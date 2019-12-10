@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $("#dtInicial").datepicker({
         format: "dd/mm/yyyy",
         clearBtn: true,
@@ -31,7 +31,7 @@ function GetFornecedores() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
 
-        success: function(response) {
+        success: function (response) {
 
             array.forEach(data => {
                 fornecedores.push(data.nomeFornecedor)
@@ -39,7 +39,7 @@ function GetFornecedores() {
 
             $("#messages").append(msg.d);
         },
-        failure: function(response) {
+        failure: function (response) {
             console.log(response.d);
         }
 
@@ -85,12 +85,12 @@ function extractLast(term) {
 }
 
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
     var forms = document.getElementsByClassName('needs-validation');
     // Faz um loop neles e evita o envio
-    var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
+    var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
             if (form.checkValidity() === false) {
                 event.preventDefault();
                 event.stopPropagation();
@@ -142,7 +142,7 @@ function ValidateRangeEmpenhos(numeroInicial, numeroFinal) {
 }
 
 function showAlert(obj) {
-    $('#msgValidate').alert('close');
+
     var html = '<div id="msgValidate" class="alert alert-' + obj.class + ' alert-dismissible" role="alert">' +
         '   <strong>' + obj.message + '</strong>' +
         '       <button class="close" type="button" data-dismiss="alert" aria-label="Close">' +
@@ -153,7 +153,7 @@ function showAlert(obj) {
 }
 
 function SearchRegister() {
-
+    $('#msgValidate').alert('close');
     ObtemDadosFiltrados("");
     const elStartDate = $("#dtInicial").datepicker("getDate");
     const elEndDate = $("#dtFinal").datepicker("getDate");
@@ -175,7 +175,9 @@ function SearchRegister() {
 function ObtemDadosFiltrados(dataFilter) {
 
 
-    var htmlTable = '<table id="dataFilter" class="table table-striped table-bordered" style="width:100%"> </table>';
+
+
+    var htmlTable = '<table id="dataFilter" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%"> </table>';
     $('#dataTable').append(htmlTable);
     let tableArray = [
         [1, "05/12/2019", "Global", "Maroquinho", "Orçamento Público", "caneta esferográfica", "258,98", "263,98", "235,58", "569,98"],
@@ -183,16 +185,12 @@ function ObtemDadosFiltrados(dataFilter) {
         [3, "05/12/2019", "Global", "Maroquinho", "Orçamento Público", "caneta esferográfica", "258,98", "263,98", "235,58", "569,98"],
         [4, "05/12/2019", "Global", "Maroquinho", "Orçamento Público", "caneta esferográfica", "258,98", "263,98", "235,58", "569,98"],
         [5, "05/12/2019", "Global", "Maroquinho", "Orçamento Público", "caneta esferográfica", "258,98", "263,98", "235,58", "569,98"],
+
     ];
 
     $('#dataFilter').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
-        ],
+        responsive: true,
+
         data: tableArray,
         "columns": [
             { "title": "Número do empenho" },
@@ -215,7 +213,7 @@ function ObtemDadosFiltrados(dataFilter) {
 
 $("#fornecedor")
     // don't navigate away from the field on tab when selecting an item
-    .on("keydown", function(event) {
+    .on("keydown", function (event) {
         console.log($(this).autocomplete("instance").menu);
         if (event.keyCode === $.ui.keyCode.TAB &&
             $(this).autocomplete("instance").menu.active) {
@@ -224,16 +222,16 @@ $("#fornecedor")
     })
     .autocomplete({
         minLength: 3,
-        source: function(request, response) {
+        source: function (request, response) {
             // delegate back to autocomplete, but extract the last term
             response($.ui.autocomplete.filter(
                 fornecedores, extractLast(request.term)));
         },
-        focus: function() {
+        focus: function () {
             // prevent value inserted on focus
             return false;
         },
-        select: function(event, ui) {
+        select: function (event, ui) {
             var terms = split(this.value);
             // remove the current input
             terms.pop();

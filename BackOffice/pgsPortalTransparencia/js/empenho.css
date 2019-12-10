@@ -140,6 +140,7 @@ hr {
     width: 1px;
 }
 
+div.container { max-width: 1200px }
 
 /*===============grid =============*/
 
