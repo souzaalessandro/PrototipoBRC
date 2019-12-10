@@ -1,3 +1,7 @@
+var contador = 0;
+const bntSearch = document.getElementById('btnSearch');
+var fornecedores = [];
+
 $(document).ready(function () {
     $("#dtInicial").datepicker({
         format: "dd/mm/yyyy",
@@ -15,29 +19,33 @@ $(document).ready(function () {
     });
     $('#collapse-collapsed').collapse({
         toggle: false
-    })
-
+    });
     GetFornecedores();
-
+    SetDateInForm();
 });
 
+function SetDateInForm() {
+    const dateNow = new Date();
+    const dateEnd = new Date();
+    dateEnd.setDate(dateNow.getDate() + 90);
+    $("#dtInicial").datepicker("setDate",dateNow);
+    $("#dtFinal").datepicker("setDate", dateEnd);
+
+}
 
 function GetFornecedores() {
-    console.log('GetFornecedor');
+
     $.ajax({
         type: "POST",
-        url: "http://localhost/brcConselhos/BackOffice/pgsPortalTransparencia/proxy/ApoioFiltros.ashx?method=GetFornecedores",
-        data: { method: "GetFornecedores" },
+        url: "proxy/ApoioFiltros.ashx?method=GetFornecedores",
+        data: {},
         contentType: "application/json; charset=utf-8",
         dataType: "json",
 
         success: function (response) {
-
-            array.forEach(data => {
-                fornecedores.push(data.nomeFornecedor)
-            });
-
-            $("#messages").append(msg.d);
+            for (var i in response) {
+                fornecedores.push(response[i].NomeFornecedor);
+            }
         },
         failure: function (response) {
             console.log(response.d);
@@ -46,35 +54,9 @@ function GetFornecedores() {
     });
 
 
+
+
 }
-
-
-const bntSearch = document.getElementById('btnSearch');
-
-var fornecedores = [
-    "ActionScript",
-    "AppleScript",
-    "Asp",
-    "BASIC",
-    "C",
-    "C++",
-    "Clojure",
-    "COBOL",
-    "ColdFusion",
-    "Erlang",
-    "Fortran",
-    "Groovy",
-    "Haskell",
-    "Java",
-    "JavaScript",
-    "Lisp",
-    "Perl",
-    "PHP",
-    "Python",
-    "Ruby",
-    "Scala",
-    "Scheme"
-];
 
 function split(val) {
     return val.split(/,\s*/);
@@ -83,7 +65,6 @@ function split(val) {
 function extractLast(term) {
     return split(term).pop();
 }
-
 
 window.addEventListener('load', function () {
     // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
@@ -112,7 +93,7 @@ function ValidateRangeDate(StartDate, EndDate) {
 
         const obj = {
             class: 'danger',
-            message: 'A data inicial do filtro não pode ser maior que a data final'
+            message: 'Data emissão final está menor que data emissão inicial!'
         };
         showAlert(obj);
 
@@ -132,7 +113,7 @@ function ValidateRangeEmpenhos(numeroInicial, numeroFinal) {
 
         const obj = {
             class: 'danger',
-            message: 'O numero inicial do empenho não pode ser maior que o numero final do empenho'
+            message: 'Número final está menor que número inicial!'
         };
         showAlert(obj);
 
@@ -147,9 +128,28 @@ function showAlert(obj) {
         '   <strong>' + obj.message + '</strong>' +
         '       <button class="close" type="button" data-dismiss="alert" aria-label="Close">' +
         '           <span aria-hidden="true">×</span>' +
-        '       </button>'
-    '   </div>';
+        '       </button>' +
+        '   </div>';
     $('#alert').append(html);
+}
+
+function ObtemTipoEmpenho() {
+
+    const ordinario = document.getElementById("ordinario").checked;
+    const estimativa = document.getElementById("estimativa").checked; 
+    const global = document.getElementById("global").checked;
+    let tipoEmpenho = 0; //todos
+
+    if (estimativa)
+        tipoEmpenho = 1;
+
+    if (global)
+        tipoEmpenho = 2;
+
+    if (ordinario)
+        tipoEmpenho = 3;
+
+    return tipoEmpenho;
 }
 
 function SearchRegister() {
@@ -190,7 +190,30 @@ function ObtemDadosFiltrados(dataFilter) {
 
     $('#dataFilter').DataTable({
         responsive: true,
+ dom: 'Bfrtip',
+        buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fas fa-file-excel"></i>',
+                        titleAttr: 'Excel'
+                    },
 
+                    {
+                        extend: 'csvHtml5',
+                        text:'<i class="fas fa-file-csv"></i>',
+                        titleAttr: 'CSV'
+                    },
+
+                    {
+                        text: '<i class="fas fa-file-pdf"></i>',
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'LEGAL',
+                        titleAttr: 'PDF',
+                        messageTop:'Portal de Transparência - Consulta de empenhos'
+                       
+                    }
+                 ],
         data: tableArray,
         "columns": [
             { "title": "Número do empenho" },
