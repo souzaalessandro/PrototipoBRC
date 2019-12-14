@@ -18,6 +18,8 @@ body {
     background-attachment: fixed;
 }
 
+
+
 .cardsize{
     padding-bottom: 8px;
 }
@@ -89,6 +91,10 @@ hr {
     background-color: antiquewhite;
 }
 
+.form-control{
+     right: 2px;
+}
+
 
 /*================== Fornecedor autocomplete ==========*/
 
@@ -148,6 +154,8 @@ hr {
     color: #fff;
     background-color: #6c757d;
     border-color: #6c757d;
+    margin-right: 10px;
+    
 }
 
 .btn-primary1{
@@ -157,6 +165,16 @@ hr {
     background-color: #6c757d;
     border-color: #6c757d;
 }
+
+/*===============Objeto =============*/
+
+.row{
+    margin-left: 0px;
+}
+
+
+
+/*=========================================================================*/
 
 
 
