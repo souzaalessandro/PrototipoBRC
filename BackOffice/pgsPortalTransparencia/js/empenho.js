@@ -2,7 +2,7 @@ var contador = 0;
 const bntSearch = document.getElementById('btnbuscar');
 var fornecedores = [];
 
-$(document).ready(function() {
+$(document).ready(function () {
     $("#dtInicial").datepicker({
         format: "dd/mm/yyyy",
         clearBtn: true,
@@ -42,12 +42,12 @@ function GetFornecedores() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
 
-        success: function(response) {
+        success: function (response) {
             for (var i in response) {
                 fornecedores.push(response[i].NomeFornecedor);
             }
         },
-        failure: function(response) {
+        failure: function (response) {
             console.log(response.d);
         }
 
@@ -66,12 +66,12 @@ function extractLast(term) {
     return split(term).pop();
 }
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
     var forms = document.getElementsByClassName('needs-validation');
     // Faz um loop neles e evita o envio
-    var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
+    var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
             if (form.checkValidity() === false) {
                 event.preventDefault();
                 event.stopPropagation();
@@ -234,26 +234,26 @@ function ObtemDadosFiltrados(dataFilter) {
         responsive: true,
         dom: 'Bfrtip',
         buttons: [{
-                extend: 'excelHtml5',
-                text: '<i class="fas fa-file-excel"></i>',
-                titleAttr: 'Excel'
-            },
+            extend: 'excelHtml5',
+            text: '<i class="fas fa-file-excel"></i>',
+            titleAttr: 'Excel'
+        },
 
-            {
-                extend: 'csvHtml5',
-                text: '<i class="fas fa-file-csv"></i>',
-                titleAttr: 'CSV'
-            },
+        {
+            extend: 'csvHtml5',
+            text: '<i class="fas fa-file-csv"></i>',
+            titleAttr: 'CSV'
+        },
 
-            {
-                text: '<i class="fas fa-file-pdf"></i>',
-                extend: 'pdfHtml5',
-                orientation: 'landscape',
-                pageSize: 'LEGAL',
-                titleAttr: 'PDF',
-                messageTop: 'Portal de Transparência - Consulta de empenhos'
+        {
+            text: '<i class="fas fa-file-pdf"></i>',
+            extend: 'pdfHtml5',
+            orientation: 'landscape',
+            pageSize: 'LEGAL',
+            titleAttr: 'PDF',
+            messageTop: 'Portal de Transparência - Consulta de empenhos'
 
-            }
+        }
 
         ],
         data: tableArray,
@@ -276,7 +276,7 @@ function ObtemDadosFiltrados(dataFilter) {
 
 $("#fornecedor")
     // don't navigate away from the field on tab when selecting an item
-    .on("keydown", function(event) {
+    .on("keydown", function (event) {
         console.log($(this).autocomplete("instance").menu);
         if (event.keyCode === $.ui.keyCode.TAB &&
             $(this).autocomplete("instance").menu.active) {
@@ -285,16 +285,16 @@ $("#fornecedor")
     })
     .autocomplete({
         minLength: 3,
-        source: function(request, response) {
+        source: function (request, response) {
             // delegate back to autocomplete, but extract the last term
             response($.ui.autocomplete.filter(
                 fornecedores, extractLast(request.term)));
         },
-        focus: function() {
+        focus: function () {
             // prevent value inserted on focus
             return false;
         },
-        select: function(event, ui) {
+        select: function (event, ui) {
             var terms = split(this.value);
             // remove the current input
             terms.pop();
@@ -306,5 +306,10 @@ $("#fornecedor")
             return false;
         }
     });
+
+
+
+
+
 
 bntSearch.addEventListener('click', SearchRegister);

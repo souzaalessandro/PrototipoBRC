@@ -16,144 +16,204 @@
     <link rel="stylesheet" href="../../Content/Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../Content/Bootstrap/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="../../Content/Bootstrap/css/jquery-ui.css">
+    <link href="../../Content/DataTables/DataTables-1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="../../Content/DataTables/Responsive-2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <link href="../../Content/DataTables/Buttons-1.6.1/css/buttons.bootstrap4.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../pgsPortalTransparencia/js/global.css">
-
-    <title></title>
+    <title>
+    </title>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="container p-5">
-            <div class="card">
-                <div class="card-header">
-                    <div class="caption">
-                        <h5>Pesquisar empenhos</h5>
-                        <div class="tools">
-                            <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed"
-                                aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
-                                <i class="fa fa-chevron-down"></i>
-
-                            </a>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <div class="caption text-center">
+                            <h5>Consultar contratos</h5>
+                            <div class="tools">
+                                <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed"
+                                    aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
+                                    <i class="fa fa-chevron-down"></i>
+                                </a>
+                            </div>
+                            <p>
+                                <hr>
+                            </p>
                         </div>
                     </div>
-                </div>
 
-                <div id="collapse-collapsed" class="collapse show" aria-labelledby="heading-collapsed">
-                    <div class="card-body">
-                        <div class="row pl-5">
-                            <div class="col-md-3 col-xl-3 ">
-                                <label for="dtInicialEmpenho">Data inicial</label>
-                                <div class="input-group">
-                                    <div class="input-group date" id="dtInicial" data-provide="datepicker">
-                                        <input type="text" id="dtInicialEmpenho" class="form-control">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <span class="fa fa-calendar"></span>
-                                            </span>
+                    <div id="collapse-collapsed" class="collapse cardsize" aria-labelledby="heading-collapsed">
+
+                        <div class="card-body pt-2 " style="padding-bottom: 6px;">
+                            <form class="needs-validation" novalidate onsubmit="return false">
+                                <div id="alert"></div>
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-3 ">
+                                        <div class="form-group">
+                                            <label for="dtInicialEmpenho">Data vigência inicial</label>
+                                            <div class="input-group">
+                                                <div class="input-group date" id="dtInicial" data-provide="datepicker">
+                                                    <input type="text" id="dtInicialEmpenho" class="form-control"
+                                                        required>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <span class="fa fa-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Por favor, informe uma data.
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-xl-3">
-                                <label for="dtFinalEmpenho">Data final</label>
-                                <div class="input-group">
-                                    <div class="input-group date" id="dtFinal" data-provide="datepicker">
-                                        <input type="text" id="dtFinalEmpenho" class="form-control">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <span class="fa fa-calendar"></span>
-                                            </span>
+                                    <div class="col-md-3 col-lg-3">
+                                        <label for="dtFinalEmpenho">Data vigência final</label>
+                                        <div class="input-group">
+                                            <div class="input-group date" id="dtFinal" data-provide="datepicker">
+                                                <input type="text" id="dtFinalEmpenho" class="form-control" required>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <span class="fa fa-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                <div class="invalid-feedback">
+                                                    Por favor, informe uma data.
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- Numero empenho -->
-                            <div class="col-md-2 col-xl-2 pb-2">
-                                <label for="numeroIni">Número de</label>
-                                <input type="text" class="form-control" id="numeroIni">
-                            </div>
-                            <div class="col-md-2 col-xl-2 pb-2">
-                                <label for="numeroFim">Até</label>
-                                <input type="text" class="form-control" id="numeroFim">
-                            </div>
-                            <!--Fim numero empenho-->
-                        </div>
-                        <!-- Tipo de empenho-->
-                        <div class="row pl-5">
-                            <div class="col-sm-6 pb-2 pr-5">
-                                <label for="tipoEmpenho">Tipos</label>
-                                <div class="form-control form-control" id="tipoEmpenho">
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                id="inlineRadio1" value="E" checked> Estimativa
-                                        </label>
+                                    <!-- Numero empenho -->
+                                    <div class="col-md-2 col-lg-2 pb-2">
+                                        <label for="numeroIni">Número inicial</label>
+                                        <input type="text" class="form-control" id="numeroIni">
                                     </div>
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                id="inlineRadio2" value="G"> Global
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                id="inlineRadio3" value="O"> Ordinário
-                                        </label>
+                                    <div class="col-md-2 col-lg-2 pb-2">
+                                        <label for="numeroFim">Número final</label>
+                                        <input type="text" class="form-control" id="numeroFim">
                                     </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <!--Fim tipo de empenho-->
-                        <div class="row pl-5">
-                            <!-- <div class="fornecedor">-->
-                            <div class="col-md-10 col-xl-11 pb-2 pr-5">
-                                <label for="fornecedor">Fornecedor</label>
-                                <div class="input-group">
-                                    <input type="text" id="fornecedor" class="form-control"
-                                        placeholder="Informe o fornecedor" aria-label="Informe o fornecedor"
-                                        aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button"><i
-                                                class="fa fa-search"></i></button>
+                                    <!--Fim numero empenho-->
+
+                                    <!-- <div class="fornecedor">-->
+                                    <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
+                                        <label for="situacao">Situação</label>
+                                        <div class="input-group">
+                                            <input type="text" id="situacao" class="form-control" placeholder=""
+                                                aria-label="" aria-describedby="basic-addon2">
+                                            <!-- <div class="input-group-append">
+                                                     <button class="btn btn-outline-secondary" id="btnSearch"
+                                                    type="submit"><i class="fa fa-search"></i></button>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <!-- </div> -->
+                                    <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
+
+
+                                        <label for="fornecedor">Fornecedor</label>
+                                        <div class="input-group">
+                                            <input type="text" id="fornecedor" class="form-control"
+                                                placeholder="Informe o fornecedor" aria-label="Informe o fornecedor"
+                                                aria-describedby="basic-addon2">
+                                            <!-- <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" id="btnSearch"
+                                                    type="submit"><i class="fa fa-search"></i></button>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-lg-8">
+
+
+
+                                        <!--Começo  da Objeto -->
+                                        <label for="fornecedor">Objeto</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                            </div>
+                                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                                        </div>
+                                        <!--Fim da Objeto -->
+
+
+
+
+
+                                    </div>
+                                    <div class="col-md-12 col-lg-12">
+
+                                        <div>
+                                            <button type="reset" class="btn btn-primary fa-pull-right">Limpar </button>
+                                            <button type="submit" class="btn btn-primary1 fa-pull-right"
+                                                id="btnbuscar">Consultar</button>
+                                        </div>
+
                                     </div>
                                 </div>
-                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-lg-8">
 
-                            <!-- </div> -->
+                                <div class="row">
+
+                                    <!-- <div class="fornecedor">-->
+
+                                    <!-- </div> -->
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="card pt-2">
-                <nav aria-label="...">
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+                    <form>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="../../Content/Bootstrap/js/jquery-3.4.1.js"></script>
-    <script src="../../Content/Bootstrap/js/jquery-ui.js"></script>
-    <script src="../../Content/Bootstrap/js/popper.min.js"></script>
-    <script src="../../Content/Bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../Content/Bootstrap/js/bootstrap-datepicker.js"></script>
-    <script src="../../Content/Bootstrap/js/bootstrap-datepicker.pt-BR.min.js"></script>
-    <script src="../pgsPortalTransparencia/js/empenho.js"></script>
+
+
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 col-xl-12">
+                                <div class="row">
+                                    <div class="col-lg-12 hide">
+                                        <div id="cardTable"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+
+
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src="../../Content/Bootstrap/js/jquery-3.4.1.js"></script>
+                <script src="../../Content/Bootstrap/js/jquery-ui.js"></script>
+                <script src="../../Content/Bootstrap/js/popper.min.js"></script>
+                <script src="../../Content/Bootstrap/js/bootstrap.min.js"></script>
+                <script src="../../Content/Bootstrap/js/bootstrap-datepicker.js"></script>
+                <script src="../../Content/Bootstrap/js/bootstrap-datepicker.pt-BR.min.js"></script>
+                <script src="../../Content/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
+                <script src="../../Content/DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
+                <script src="../../Content/DataTables/DataTables-1.10.20/js/dataTables.responsive.min.js"></script>
+                <script src="../../Content/DataTables/Responsive-2.2.3/js/responsive.bootstrap4.js"></script>
+                <script src="../../Content/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
+                <script src="../../Content/DataTables/JSZip-2.5.0/jszip.min.js"></script>
+                <script src="../../Content/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+                <script src="../../Content/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+                <script src="../../Content/DataTables/Buttons-1.6.1/js/buttons.html5.min.js"></script>
+                <script src="../pgsPortalTransparencia/js/empenho.js"></script>
+
 
 </body>
 
