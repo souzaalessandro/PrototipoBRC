@@ -16,9 +16,13 @@
     <link rel="stylesheet" href="../../Content/Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../Content/Bootstrap/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="../../Content/Bootstrap/css/jquery-ui.css">
+    <link href="../../Content/DataTables/DataTables-1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="../../Content/DataTables/Responsive-2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <link href="../../Content/DataTables/Buttons-1.6.1/css/buttons.bootstrap4.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../Content/Bootstrap/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="../pgsPortalTransparencia/js/global.css">
-
-    <title></title>
+    <title>
+    </title>
 </head>
 
 <body>
@@ -28,7 +32,7 @@
                 <div class="card mt-5">
                     <div class="card-header">
                         <div class="caption text-center">
-                            <h5>Consultar de Contratos</h5>
+                            <h5>Documentos públicos</h5>
                             <div class="tools">
                                 <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed"
                                     aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
@@ -41,17 +45,18 @@
                         </div>
                     </div>
 
-                    <div id="collapse-collapsed" class="collapse show" aria-labelledby="heading-collapsed">
-                        <div class="card-body pt-2">
+                    <div id="collapse-collapsed" class="collapse cardsize" aria-labelledby="heading-collapsed">
+
+                        <div class="card-body pt-2 " style="padding-bottom: 6px;">
                             <form class="needs-validation" novalidate onsubmit="return false">
                                 <div id="alert"></div>
                                 <div class="row">
                                     <div class="col-md-3 col-lg-3 ">
                                         <div class="form-group">
-                                            <label for="dtInicialVigencia">Data inicial</label>
+                                            <label for="dtInicialEmpenho">Data inicial</label>
                                             <div class="input-group">
                                                 <div class="input-group date" id="dtInicial" data-provide="datepicker">
-                                                    <input type="text" id="dtInicialVigencia" class="form-control"
+                                                    <input type="text" id="dtInicialEmpenho" class="form-control"
                                                         required>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
@@ -66,10 +71,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-lg-3">
-                                        <label for="dtFinalVigencia">Data final</label>
+                                        <label for="dtFinalEmpenho">Data final</label>
                                         <div class="input-group">
                                             <div class="input-group date" id="dtFinal" data-provide="datepicker">
-                                                <input type="text" id="dtFinalVigencia" class="form-control" required>
+                                                <input type="text" id="dtFinalEmpenho" class="form-control" required>
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">
                                                         <span class="fa fa-calendar"></span>
@@ -81,130 +86,96 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
+
+
+
+
+
+
+
+
+
+
+                                    <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
+                                        <label for="situacao">Tipo Documento</label>
+                                        <div class="input-group">
+
+
+                                            <select class="selectpicker form-control border " id="number3"
+                                                title="Tipo documento" data-hide-disabled="true"></select>
+
+                                        </div>
+                                    </div>
+
+
+
                                     <div class="col-md-8 col-lg-8">
-
-                                        <div class="row">
-                                            <!--Começo do tipo Situação-->
-                                            <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
-                                                <label for="fornecedor">Categoria</label>
-                                                <div class="input-group">
-                                                    <input type="text" id="Situação" class="form-control" placeholder=""
-                                                        aria-label="" aria-describedby="basic-addon2">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-outline-secondary" id="btnSearch"
-                                                            type="submit"><i class="fa fa-search"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--Fim tipo do Situação-->
-
-                                        <!--Comeco do Input Group-->
-                                        <label for="fornecedor">Objeto</label>
+                                        <!--Começo  da Objeto -->
+                                        <label for="fornecedor">Descrição</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                             </div>
-
                                             <textarea class="form-control" aria-label="With textarea"></textarea>
                                         </div>
+                                        <!--Fim da Objeto -->
+                                    </div>
+                                </div>
+                            </form>
 
-                                        <!--Começo  da descriçao -->
-                                        <label for="fornecedor">Objeto</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                            </div>
+                            <div class="col-md-12 col-lg-12">
 
-                                            <textarea class="form-control" aria-label="With textarea"></textarea>
-                                        </div>
-                                        <!--Fim da descriçao -->
+                                <div>
+                                    <button type="reset" class="btn btn-primary fa-pull-right">Limpar </button>
+                                    <button type="submit" class="btn btn-primary1 fa-pull-right"
+                                        id="btnbuscar">Consultar</button>
+                                </div>
 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-lg-8">
 
+                            <div class="row">
 
+                                <!-- <div class="fornecedor">-->
 
-                                        <!--Fim do Input Group-->
-
-                                        <div class="row">
-                                            <!-- <div class="fornecedor">-->
-                                            <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
-                                                <label for="fornecedor">Fornecedor</label>
-                                                <div class="input-group">
-                                                    <input type="text" id="fornecedor" class="form-control"
-                                                        placeholder="Informe o fornecedor"
-                                                        aria-label="Informe o fornecedor"
-                                                        aria-describedby="basic-addon2">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-outline-secondary" id="btnSearch"
-                                                            type="submit"><i class="fa fa-search"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- </div> -->
-                                        </div>
+                                <!-- </div> -->
+                            </div>
                             </form>
                         </div>
                     </div>
+
+                    <div class="row">
+
+                    </div>
                 </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 col-xl-12">
-                <div class="row">
-                    <div class="col-lg-12 hide">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="card-title">Title</h3>
-                                <p class="card-text">Text</p>
+
+
+
+
+
+                <div class="row pt-2">
+                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 col-xl-12">
+                        <div class="row">
+                            <div class="col-lg-12 hide">
+                                <div id="cardTable"></div>
                             </div>
-                            <nav>
-                                <ul class="pagination">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item active">
-                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
+                        </div>
+                        <div class="row">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                            </div>
+                        </div>
+                        <div class="row">
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <nav class="nav navbar-fixed-top navbar-default">
-                        <div class="container">
-                            <div class="collapse navbar-collapse">
-                                <ul class="nav navbar-nav navbar-rigth">
-                                    <li><a href="#">PDF</a></li>
-                                    <li><a href="#">Excel</a>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </nav>
-                </div>
-                <div class="row">
-
-                    <div class="col-md-12 marcador">
-
-                    </div>
-
-                </div>
-                <div class="row">
-
-                </div>
-
             </div>
+
         </div>
     </div>
-
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="../../Content/Bootstrap/js/jquery-3.4.1.js"></script>
@@ -213,7 +184,18 @@
     <script src="../../Content/Bootstrap/js/bootstrap.min.js"></script>
     <script src="../../Content/Bootstrap/js/bootstrap-datepicker.js"></script>
     <script src="../../Content/Bootstrap/js/bootstrap-datepicker.pt-BR.min.js"></script>
+    <script src="../../Content//Bootstrap/js/bootstrap-select.min.js"></script>
+    <script src="../../Content/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="../../Content/DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../Content/DataTables/DataTables-1.10.20/js/dataTables.responsive.min.js"></script>
+    <script src="../../Content/DataTables/Responsive-2.2.3/js/responsive.bootstrap4.js"></script>
+    <script src="../../Content/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="../../Content/DataTables/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="../../Content/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script src="../../Content/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="../../Content/DataTables/Buttons-1.6.1/js/buttons.html5.min.js"></script>
     <script src="../pgsPortalTransparencia/js/empenho.js"></script>
+
 
 </body>
 
