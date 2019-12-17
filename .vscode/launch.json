@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "file:///C:/Users/Athur/Desktop/PrototipoBRC/BackOffice/pgsPortalTransparencia/Empenhos.html",
+            "url": "file:///D:/4FDeveloper/BRC/Prototipo/BackOffice/pgsPortalTransparencia/Empenhos.html",
             "webRoot": "${workspaceFolder}",
             "sourceMaps": true
         }

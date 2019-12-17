@@ -84,6 +84,6 @@ jQuery.fn.dataTable.render.ellipsis = function(cutoff, wordbreak, escapeHtml) {
             shortened = esc(shortened);
         }
 
-        return '<span class="ellipsis" title="' + esc(d) + '">' + shortened + '&#8230;</span>';
+        return '<span class="ellipsis" title="' + esc(d) + '">' + shortened + '&#8230;</span><div style="display:none">' + esc(d) + '</div> ';
     };
 };

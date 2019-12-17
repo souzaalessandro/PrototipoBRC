@@ -2,21 +2,30 @@ var contador = 0;
 const bntSearch = document.getElementById('btnbuscar');
 var fornecedores = [];
 
+
+
 $(document).ready(function() {
+
     $("#dtInicial").datepicker({
         format: "dd/mm/yyyy",
         clearBtn: true,
         language: "pt-BR",
         autoclose: true,
-        todayHighlight: true
+        orientation: "left",
+        todayHighlight: true,
+
     });
+
     $("#dtFinal").datepicker({
         format: "dd/mm/yyyy",
         clearBtn: true,
         language: "pt-BR",
         autoclose: true,
-        todayHighlight: true
+        orientation: "left",
+        todayHighlight: true,
+
     });
+
     $('#collapse-collapsed').collapse({
         toggle: false
     });
@@ -27,14 +36,13 @@ $(document).ready(function() {
 function SetDateInForm() {
     const dateNow = new Date();
     const dateEnd = new Date();
-    dateEnd.setDate(dateNow.getDate() + 90);
+    dateNow.setDate(dateEnd.getDate() - 90);
     $("#dtInicial").datepicker("setDate", dateNow);
     $("#dtFinal").datepicker("setDate", dateEnd);
 
 }
 
 function GetFornecedores() {
-
     $.ajax({
         type: "POST",
         url: "proxy/ApoioFiltros.ashx?method=GetFornecedores",
@@ -52,10 +60,6 @@ function GetFornecedores() {
         }
 
     });
-
-
-
-
 }
 
 function split(val) {
@@ -84,10 +88,13 @@ window.addEventListener('load', function() {
 function ValidateRangeDate(StartDate, EndDate) {
 
     if (typeof StartDate === 'undefined')
-        return;
+        return false;
 
     if (StartDate === null)
-        return;
+        return false;
+
+
+
 
     if (StartDate > EndDate) {
 
@@ -96,35 +103,38 @@ function ValidateRangeDate(StartDate, EndDate) {
             message: 'Data emissão final está menor que data emissão inicial!'
         };
         showAlert(obj);
-
+        return false;
     }
+
+    return true;
 
 }
 
 function ValidateRangeEmpenhos(numeroInicial, numeroFinal) {
 
     if (typeof numeroInicial === 'undefined')
-        return;
+        return false;
 
     if (numeroInicial === null)
-        return;
+        return false;
 
     if (numeroInicial > numeroFinal) {
 
         const obj = {
             class: 'danger',
-            message: 'Número final está menor que número inicial!'
+            message: 'Número final está menor que número inicial!',
+            id: "dataRange"
         };
         showAlert(obj);
+        return false;
 
     }
-
+    return true;
 
 }
 
 function showAlert(obj) {
-
-    var html = '<div id="msgValidate" class="alert alert-' + obj.class + ' alert-dismissible" role="alert">' +
+    var html = '<div id="' + obj.id + '" class="alert alert-' + obj.class + ' alert-dismissible" role="alert">' +
         '   <strong>' + obj.message + '</strong>' +
         '       <button class="close" type="button" data-dismiss="alert" aria-label="Close">' +
         '           <span aria-hidden="true">×</span>' +
@@ -153,20 +163,24 @@ function ObtemTipoEmpenho() {
 }
 
 function SearchRegister() {
-    $('#msgValidate').alert('close');
+
+    ClearElements("cardTable");
+    ClearElements("alert");
+
     const elStartDate = $("#dtInicial").datepicker("getDate");
     const elEndDate = $("#dtFinal").datepicker("getDate");
 
-    ValidateRangeDate(elStartDate, elEndDate);
+    let podeConsultar = ValidateRangeDate(elStartDate, elEndDate);
+    if (!podeConsultar)
+        return;
 
     const numeroEmpenhoInicial = document.getElementById('numeroIni').value;
     const numeroEmpenhoFinal = document.getElementById('numeroFim').value;
 
-    ValidateRangeEmpenhos(numeroEmpenhoInicial, numeroEmpenhoFinal);
+    podeConsultar = ValidateRangeEmpenhos(numeroEmpenhoInicial, numeroEmpenhoFinal);
 
-    $('#collapse-collapsed').collapse({
-        toggle: true
-    });
+    if (!podeConsultar)
+        return;
 
     const fornecedorFiltro = document.getElementById('fornecedor').value;
     var dados = {
@@ -184,13 +198,18 @@ function SearchRegister() {
 
 }
 
-
-function ObtemDadosFiltrados(dataFilter) {
-
-    const card = document.getElementById("cardTable");
+function ClearElements(objId) {
+    const card = document.getElementById(objId);
     while (card.firstChild) {
         card.removeChild(card.firstChild);
     }
+
+}
+
+
+function ObtemDadosFiltrados(dataFilter) {
+
+
     var htmlTable = '<div class="card"><div class="card-body"> <table id="dataFilter" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">' +
         '<thead>                       ' +
         '    <tr>                      ' +
@@ -236,13 +255,19 @@ function ObtemDadosFiltrados(dataFilter) {
         buttons: [{
                 extend: 'excelHtml5',
                 text: '<i class="fas fa-file-excel"></i>',
-                titleAttr: 'Excel'
+                titleAttr: 'Excel',
+                exportOptions: {
+                    orthogonal: 'export'
+                }
             },
 
             {
                 extend: 'csvHtml5',
                 text: '<i class="fas fa-file-csv"></i>',
-                titleAttr: 'CSV'
+                titleAttr: 'CSV',
+		exportOptions: {
+                    orthogonal: 'export'
+                }
             },
 
             {
@@ -251,7 +276,12 @@ function ObtemDadosFiltrados(dataFilter) {
                 orientation: 'landscape',
                 pageSize: 'LEGAL',
                 titleAttr: 'PDF',
-                messageTop: 'Portal de Transparência - Consulta de empenhos'
+		exportOptions: {
+                    orthogonal: 'export'
+                },
+                title: function () {
+                    return 'Portal de Transparência - Consulta de empenhos';
+                }
 
             }
 
@@ -259,24 +289,95 @@ function ObtemDadosFiltrados(dataFilter) {
         data: tableArray,
         columns: [
             { "title": "Empenho", "target": 0, "width": "10px" },
-            { "title": "Data Vencimento", "target": 1, "width": "30px" },
-            { "title": "Tipo", "target": 2, "width": "30px" },
-            { "title": "Fornecedor", "target": 3, "width": "40px" },
-            { "title": "Despesa orç." },
-            { "title": "Objeto" },
-            { "title": "Valor empenhado" },
-            { "title": "Valor liquidado" },
-            { "title": "Valor pago" },
-            { "title": "Valor anulado" }
+      
+            {   
+	    "title": "Data Vencimento", 
+	        "target": 1, 
+		"width": "30px", 
+		className: "text-center",
+                data: 'dataEmissao',
+                type: "date",
+		target:1,
+                format: "DD/MM/YYYY",
+                render: function (data) {
+                    return convertJsonDateToShortDate(data);
+                }
+            },
+            { "title": "Tipo", "target": 2, "width": "30px", className: "text-center" },
+            {
+                "title": "Fornecedor",
+                target: 3,
+                "width": "40px",
+                render: $.fn.dataTable.render.ellipsis(17)
+
+            },
+            {
+                "title": "Despesa orç.",
+                target: 4,
+                width: "40px",
+                render: $.fn.dataTable.render.ellipsis(20)
+            },
+            {
+                "title": "Objeto",
+                target: 5,
+		data: 'objetoEmpenho', 
+		type: 'string',
+                width: "40px",
+                render: $.fn.dataTable.render.ellipsis(20)
+            },
+            {
+                "title": "Valor empenhado",
+                width: "30px",
+                target: 6,
+                className: "text-right",
+		 data: 'valorEmpenhado', 
+		 render: $.fn.dataTable.render.number(',', '.', 2, 'R$ '), 
+		 type: 'num-fmt'
+            },
+            {
+                "title": "Valor liquidado",
+                target: 7,
+                width: '30px',
+                className: "text-right",
+		data: 'valorLiquidado', 
+		render: $.fn.dataTable.render.number(',', '.', 2, 'R$ '), 
+		type: 'num-fmt'
+            },
+            {
+                "title": "Valor pago",
+                width: "30px",
+                target: 8,
+                className: "text-right",
+		data: 'valorPago', 
+		render: $.fn.dataTable.render.number(',', '.', 2, 'R$ '), 
+		type: 'num-fmt'
+            },
+            {
+                "title": "Valor anulado",
+                width: "30px",
+                target: 9,
+                className: "text-right",
+		data: 'valorAnulado', 
+		render: $.fn.dataTable.render.number(',', '.', 2, 'R$ '), 
+		type: 'num-fmt'
+            }
         ]
+
+
 
     });
 
 }
 
+function convertJsonDateToShortDate(data) {
+    // This function converts a json date to a short date
+    // e.g. /Date(1538377200000)/ to 10/1/2018
+    const dateValue = new Date(parseInt(data.substr(6)));
+    return dateValue.toLocaleDateString();
+}
 $("#fornecedor")
     // don't navigate away from the field on tab when selecting an item
-    .on("keydown", function(event) {
+    .on("keydown", function (event) {
         console.log($(this).autocomplete("instance").menu);
         if (event.keyCode === $.ui.keyCode.TAB &&
             $(this).autocomplete("instance").menu.active) {
@@ -285,16 +386,16 @@ $("#fornecedor")
     })
     .autocomplete({
         minLength: 3,
-        source: function(request, response) {
+        source: function (request, response) {
             // delegate back to autocomplete, but extract the last term
             response($.ui.autocomplete.filter(
                 fornecedores, extractLast(request.term)));
         },
-        focus: function() {
+        focus: function () {
             // prevent value inserted on focus
             return false;
         },
-        select: function(event, ui) {
+        select: function (event, ui) {
             var terms = split(this.value);
             // remove the current input
             terms.pop();
