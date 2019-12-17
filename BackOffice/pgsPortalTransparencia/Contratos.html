@@ -27,7 +27,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                 <div class="card mt-5">
                     <div class="card-header">
                         <div class="caption text-center">
@@ -85,122 +85,102 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Numero empenho -->
-                                    <div class="col-md-2 col-lg-2 pb-2">
+
+                                    <div class="col-md-2 col-lg-2 pb-1">
                                         <label for="numeroIni">Número inicial</label>
                                         <input type="text" class="form-control" id="numeroIni">
                                     </div>
-                                    <div class="col-md-2 col-lg-2 pb-2">
+                                    <div class="col-md-2 col-lg-2 pb-1">
                                         <label for="numeroFim">Número final</label>
                                         <input type="text" class="form-control" id="numeroFim">
                                     </div>
 
-                                    <!--Fim numero empenho-->
 
-                                    <!-- <div class="fornecedor">-->
-                                    <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5">
-                                        <label for="fornecedor">Situação</label>
+                                    <div class="col-md-10 col-lg-10 col-xl-10 pb-1">
+                                        <label for="situacao">Situação</label>
                                         <div class="input-group">
-                                            <input type="text" id="fornecedor" class="form-control" placeholder=""
+                                            <input type="text" id="situacao" class="form-control" placeholder=""
                                                 aria-label="" aria-describedby="basic-addon2">
-                                            <!-- <div class="input-group-append">
-                                                     <button class="btn btn-outline-secondary" id="btnSearch"
-                                                    type="submit"><i class="fa fa-search"></i></button>
-                                            </div> -->
+
                                         </div>
                                     </div>
-                                    <!-- </div> -->
-                                </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-8 col-lg-8">
+                                    <div class="col-md-10 col-lg-10 col-xl-10 pb-1">
 
-                                <div class="row">
 
-                                    <!--Começo  da Objeto -->
-                                    <label for="fornecedor" style="margin-left: 34px;">Objeto</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
+
+                                        <label for="objeto">Objeto</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                            </div>
+                                            <textarea class="form-control" id="objeto"
+                                                aria-label="With textarea"></textarea>
+
                                         </div>
-                                        <textarea class="form-control" aria-label="With textarea"
-                                            style="left: 35px;"></textarea>
                                     </div>
-                                    <!--Fim da Objeto -->
-
-                                    <!-- <div class="fornecedor">-->
-                                    <div class="col-md-10 col-lg-10 col-xl-10 pb-2 pr-5"
-                                        style="top: 8px ; margin-left: 19px;">
+                                    <div class="col-md-10 col-lg-10 col-xl-10 pb-4 ">
 
                                         <label for="fornecedor">Fornecedor</label>
                                         <div class="input-group">
                                             <input type="text" id="fornecedor" class="form-control"
                                                 placeholder="Informe o fornecedor" aria-label="Informe o fornecedor"
                                                 aria-describedby="basic-addon2">
-                                            <!-- <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" id="btnSearch"
-                                                    type="submit"><i class="fa fa-search"></i></button>
-                                            </div> -->
+
                                         </div>
                                     </div>
-                                    <!-- </div> -->
+                                    <div class="col-md-12 col-lg-12 col-xl-12">
+                                        <button type="reset" class="btn btn-primary fa-pull-right">Limpar </button>
+                                        <button type="submit" class="btn btn-primary1 fa-pull-right"
+                                            id="btnbuscar">Consultar</button>
+                                    </div>
                                 </div>
-                                </form>
-                            </div>
+
+                            </form>
+
                         </div>
 
-                        <div>
-                            <button type="reset" class="btn btn-primary fa-pull-right">Limpar </button>
-                            <button type="submit" class="btn btn-primary1 fa-pull-right"
-                                id="btnbuscar">Consultar</button>
-                        </div>
 
                     </div>
 
                 </div>
             </div>
-            <form>
-
-
-
-                <br>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 col-xl-12">
                 <div class="row">
-                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 col-xl-12">
-                        <div class="row">
-                            <div class="col-lg-12 hide">
-                                <div id="cardTable"></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                            </div>
-                        </div>
-                        <div class="row">
-                        </div>
+                    <div class="col-lg-12 hide">
+                        <div id="cardTable"></div>
                     </div>
                 </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+            </div>
         </div>
+    </div>
 
 
-
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="../../Content/Bootstrap/js/jquery-3.4.1.js"></script>
-        <script src="../../Content/Bootstrap/js/jquery-ui.js"></script>
-        <script src="../../Content/Bootstrap/js/popper.min.js"></script>
-        <script src="../../Content/Bootstrap/js/bootstrap.min.js"></script>
-        <script src="../../Content/Bootstrap/js/bootstrap-datepicker.js"></script>
-        <script src="../../Content/Bootstrap/js/bootstrap-datepicker.pt-BR.min.js"></script>
-        <script src="../../Content/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
-        <script src="../../Content/DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
-        <script src="../../Content/DataTables/DataTables-1.10.20/js/dataTables.responsive.min.js"></script>
-        <script src="../../Content/DataTables/Responsive-2.2.3/js/responsive.bootstrap4.js"></script>
-        <script src="../../Content/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
-        <script src="../../Content/DataTables/JSZip-2.5.0/jszip.min.js"></script>
-        <script src="../../Content/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
-        <script src="../../Content/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
-        <script src="../../Content/DataTables/Buttons-1.6.1/js/buttons.html5.min.js"></script>
-        <script src="../pgsPortalTransparencia/js/empenho.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../../Content/Bootstrap/js/jquery-3.4.1.js"></script>
+    <script src="../../Content/Bootstrap/js/jquery-ui.js"></script>
+    <script src="../../Content/Bootstrap/js/popper.min.js"></script>
+    <script src="../../Content/Bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../Content/Bootstrap/js/bootstrap-datepicker.js"></script>
+    <script src="../../Content/Bootstrap/js/bootstrap-datepicker.pt-BR.min.js"></script>
+    <script src="../../Content/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="../../Content/DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../Content/DataTables/DataTables-1.10.20/js/dataTables.responsive.min.js"></script>
+    <script src="../../Content/DataTables/Responsive-2.2.3/js/responsive.bootstrap4.js"></script>
+    <script src="../../Content/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="../../Content/DataTables/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="../../Content/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script src="../../Content/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="../../Content/DataTables/Buttons-1.6.1/js/buttons.html5.min.js"></script>
+    <script src="../pgsPortalTransparencia/js/empenho.js"></script>
 
 
 </body>

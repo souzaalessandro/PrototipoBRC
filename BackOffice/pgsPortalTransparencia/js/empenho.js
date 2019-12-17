@@ -22,6 +22,8 @@ $(document).ready(function () {
     });
     //GetFornecedores();
     SetDateInForm();
+    createOptions(11);
+
 });
 
 function SetDateInForm() {
@@ -307,7 +309,18 @@ $("#fornecedor")
         }
     });
 
+function createOptions(number) {
+    var options = [], _options;
 
+    for (var i = 0; i < number; i++) {
+        var option = '<option value="' + i + '">Option ' + i + '</option>';
+        options.push(option);
+    }
+    _options = options.join('');
+    $('#number2')[0].innerHTML = _options;
+    $('#number3')[0].innerHTML = _options;
+
+}
 
 
 

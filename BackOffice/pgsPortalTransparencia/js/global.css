@@ -162,14 +162,33 @@ hr {
     background-color: #6c757d;
     border-color: #6c757d;
 }
-
 div.container {
     max-width: 1200px
 }
 
+
 .caption  {
     padding-top: 11px
 }
+
+/*===============Select=============*/
+.btn-light {
+    
+    background-color: #fff;
+    border-color: #f8f9fa;
+}
+/*===============Select=============*/
+
+/*===============Borda select=============*/
+.bootstrap-select.form-control {
+    margin-bottom: 0;
+    padding: 0;
+    border: gray;
+    height: auto;
+  }
+/*===============Borda select=============*/
+
+
 
 
 
